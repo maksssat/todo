@@ -1,6 +1,6 @@
 import React from "react";
 import { useTodo } from "../TodoContext";
-import "./style.css";
+import "./Calendar.css";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 

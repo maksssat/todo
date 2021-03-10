@@ -1,0 +1,23 @@
+.calendar {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-item {
+  height: 10vw;
+  outline: 0.1px solid black;
+  text-align: center;
+}
