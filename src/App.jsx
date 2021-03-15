@@ -1,19 +1,19 @@
 import React from "react";
-import { TodoProvider } from "./TodoContext";
-import Calendar from "./calendar/Calendar";
-import Todo from "./Todo/Todo";
+import { DateProvider } from "./Components/DateContext/DateContext";
+import DateSelector from "./Components/DateSelector/DateSelector";
+import Calendar from "./Components/Calendar/Calendar";
+import Todo from "./Components/Todo/Todo";
 import "./App.css";
-import DateSelector from "./DateSelector/DateSelector";
 
 function App() {
   return (
-    <TodoProvider>
+    <DateProvider>
       <div className="App">
         <DateSelector />
         <Calendar />
         <Todo />
       </div>
-    </TodoProvider>
+    </DateProvider>
   );
 }
 

@@ -13,6 +13,7 @@
 
 .calendar-body {
   display: grid;
+  grid-gap: 1px;
   grid-template-columns: repeat(7, 1fr);
 }
 
@@ -20,4 +21,13 @@
   height: 10vw;
   outline: 0.1px solid black;
   text-align: center;
+  color: rgb(160, 160, 160);
+}
+
+.calendar-item.current-month {
+  color: black;
+}
+
+.calendar-item.today {
+  background-color: rgb(54, 54, 223);
 }
