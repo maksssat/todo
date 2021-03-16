@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import Child1 from "./Child1";
-import Child2 from "./Child2";
+import React, { useEffect } from "react";
+import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
+import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
 
 export default function Todo() {
-  const [state, setState] = useState(true);
+  const { selectedDate } = useSelectedDate();
 
-  console.log("Todo rendered");
+  console.log("Todo render");
 
-  // return <section className="todo"></section>;
+  useEffect(() => {
+    console.log("Todo rendered");
+  });
 
   return (
-    <>
-      <Child1 />
-      <Child2 />
-      <button onClick={() => setState((prev) => !prev)}>Click</button>
-    </>
+    <div>
+      <h2>{selectedDate}</h2>
+      <TodoInput />
+      <h3>Невыполненные</h3>
+      <TodoList completed={false} />
+      <h3>Выполненные</h3>
+      <TodoList completed={true} />
+    </div>
   );
 }

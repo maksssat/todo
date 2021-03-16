@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDate } from "../DateContext/DateContext";
+import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
 import "./Calendar.css";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
 
-export default function Calendar() {
+const monthArr = [
+  "января",
+  "февраля",
+  "марта",
+  "апреля",
+  "мая",
+  "июня",
+  "июля",
+  "августа",
+  "сентября",
+  "октября",
+  "ноября",
+  "декабря",
+];
+
+export default function Calendar({ setDate }) {
   const { daysToRender } = useDate();
+  const { setSelectedDate } = useSelectedDate();
 
   function handleOnCalendarClick(e) {
-    console.dir(e.target.dataset.date);
+    setSelectedDate(e.target.dataset.date);
   }
 
-  console.log("Calendar rendered");
+  console.log("Calendar render");
+
+  useEffect(() => {
+    console.log("Calendar rendered");
+  });
 
   return (
     <section className="calendar">
@@ -27,7 +48,7 @@ export default function Calendar() {
               today ? "today" : ""
             }`}
             key={`${day} ${id}`}
-            data-date={`${year}-${month}-${day}`}
+            data-date={`${day} ${monthArr[month]} ${year}`}
           >
             {day}
           </div>

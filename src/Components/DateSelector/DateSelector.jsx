@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDate } from "../DateContext/DateContext";
 import { MONTH_DECREMENT, MONTH_INCREMENT } from "../DateContext/DateReducer";
 import "./DateSelector.css";
 
-const month = [
+const monthArr = [
   "январь",
   "февраль",
   "март",
@@ -19,9 +19,16 @@ const month = [
 ];
 
 export default function DateSelector() {
-  const { dispatch, state } = useDate();
+  const {
+    dispatch,
+    state: { month, year },
+  } = useDate();
 
-  console.log("DateSelector rendered");
+  console.log("DateSelector render");
+
+  useEffect(() => {
+    console.log("DateSelector rendered");
+  });
 
   return (
     <section className="date-selector">
@@ -61,9 +68,7 @@ export default function DateSelector() {
           />
         </svg>
       </button>
-      <div className="date-display">{`${month[state.month]} ${
-        state.year
-      }`}</div>
+      <div className="date-display">{`${monthArr[month]} ${year}`}</div>
     </section>
   );
 }
