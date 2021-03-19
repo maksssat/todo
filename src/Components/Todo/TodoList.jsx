@@ -25,8 +25,12 @@ export default function TodoList({ completed }) {
 
   return (
     <ul>
-      {state[selectedDate]
-        ? state[selectedDate]
+      {!state[selectedDate] ||
+      state[selectedDate].filter((item) =>
+        completed ? item.completed : !item.completed
+      ).length === 0
+        ? "Нет дел"
+        : state[selectedDate]
             .filter((item) => (completed ? item.completed : !item.completed))
             .map((item) => (
               <li className="todo-item" key={item.id}>
@@ -40,8 +44,7 @@ export default function TodoList({ completed }) {
                   ❌
                 </button>
               </li>
-            ))
-        : "Нет дел"}
+            ))}
     </ul>
   );
 }

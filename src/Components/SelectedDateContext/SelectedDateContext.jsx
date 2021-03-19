@@ -24,9 +24,7 @@ export function useSelectedDate() {
 
 export function SelectedDateProvider({ children }) {
   const [selectedDate, setSelectedDate] = useState(() => {
-    return `${today.getDate()} ${
-      month[today.getMonth()]
-    } ${today.getFullYear()}`;
+    return `${today.getDate()} ${month[today.getMonth()]} ${today.getFullYear()}`;
   });
 
   console.log("SelectedDateContext render");

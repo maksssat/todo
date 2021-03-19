@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDate } from "../DateContext/DateContext";
 import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
+import { useTodo } from "../TodoContext/TodoContext";
 import "./Calendar.css";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
@@ -20,12 +21,13 @@ const monthArr = [
   "декабря",
 ];
 
-export default function Calendar({ setDate }) {
+export default function Calendar() {
   const { daysToRender } = useDate();
   const { setSelectedDate } = useSelectedDate();
+  const { state } = useTodo();
 
   function handleOnCalendarClick(e) {
-    setSelectedDate(e.target.dataset.date);
+    setSelectedDate(e.target.closest(".calendar-item").dataset.date);
   }
 
   console.log("Calendar render");
@@ -42,17 +44,29 @@ export default function Calendar({ setDate }) {
         ))}
       </div>
       <div className="calendar-body" onClick={handleOnCalendarClick}>
-        {daysToRender.map(({ day, month, year, today, currentMonth }, id) => (
-          <div
-            className={`calendar-item ${currentMonth ? "current-month" : ""} ${
-              today ? "today" : ""
-            }`}
-            key={`${day} ${id}`}
-            data-date={`${day} ${monthArr[month]} ${year}`}
-          >
-            {day}
-          </div>
-        ))}
+        {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
+          const currentDayStr = `${day} ${monthArr[month]} ${year}`;
+
+          return (
+            <div
+              className={`calendar-item${currentMonth && " current-month"}${today && " today"}`}
+              key={`${day} ${id}`}
+              data-date={currentDayStr}
+            >
+              <div>{day}</div>
+              {state[currentDayStr] ? (
+                <div>
+                  {state[currentDayStr].map((item, id) => {
+                    return id < 3 ? <p>{item.text}</p> : null;
+                  })}
+                  {state[currentDayStr].length > 3
+                    ? `Еще ${7 - state[currentDayStr].length} элементов`
+                    : null}
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

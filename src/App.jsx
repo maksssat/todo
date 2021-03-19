@@ -8,15 +8,13 @@ import Todo from "./Components/Todo/Todo";
 import "./App.css";
 
 function App() {
-  // const [date, setDate] = useState("");
-
   return (
     <div className="App">
       <DateProvider>
         <SelectedDateProvider>
+          <TodoProvider>
           <DateSelector />
           <Calendar />
-          <TodoProvider>
             <Todo />
           </TodoProvider>
         </SelectedDateProvider>

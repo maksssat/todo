@@ -26,6 +26,8 @@ export function getDaysToRender(month, year) {
           day,
           month: month ? month - 1 : 11,
           year: month ? year : year - 1,
+          currentMonth: "",
+          today: "",
         });
         day--;
       }
@@ -35,6 +37,8 @@ export function getDaysToRender(month, year) {
           day,
           month: month ? month - 1 : 11,
           year: month ? year : year - 1,
+          currentMonth: "",
+          today: "",
         });
         day--;
       }
@@ -46,21 +50,16 @@ export function getDaysToRender(month, year) {
   const daysArrToPrepend = getDaysToPrepend();
 
   //массив из дней текущего месяца
-  const daysArrCurrMonth = Array.from(
-    { length: daysInSelectedMonth },
-    (_, index) => ({
-      day: index + 1,
-      month,
-      year,
-      today:
-        index + 1 === today.getDate() &&
-        month === today.getMonth() &&
-        year === today.getFullYear()
-          ? true
-          : false,
-      currentMonth: true,
-    })
-  );
+  const daysArrCurrMonth = Array.from({ length: daysInSelectedMonth }, (_, index) => ({
+    day: index + 1,
+    month,
+    year,
+    today:
+      index + 1 === today.getDate() && month === today.getMonth() && year === today.getFullYear()
+        ? true
+        : "",
+    currentMonth: true,
+  }));
 
   // получение массива дней начала следующего месяца
   function getDaysToAppend() {
@@ -73,6 +72,8 @@ export function getDaysToRender(month, year) {
           day: i,
           month: month === 11 ? 0 : month + 1,
           year: month === 11 ? year + 1 : year,
+          currentMonth: "",
+          today: "",
         });
       }
     }
