@@ -32,10 +32,7 @@ export default function DateSelector() {
 
   return (
     <section className="date-selector">
-      <button
-        className="date-selector-button"
-        onClick={() => dispatch({ type: MONTH_DECREMENT })}
-      >
+      <button className="date-selector-button" onClick={() => dispatch({ type: MONTH_DECREMENT })}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -50,10 +47,7 @@ export default function DateSelector() {
           />
         </svg>
       </button>
-      <button
-        className="date-selector-button"
-        onClick={() => dispatch({ type: MONTH_INCREMENT })}
-      >
+      <button className="date-selector-button" onClick={() => dispatch({ type: MONTH_INCREMENT })}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"

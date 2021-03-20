@@ -1,33 +1,41 @@
 .calendar {
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.calendar-header {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  font-size: 15px;
-  text-transform: uppercase;
-  text-align: center;
+  /* margin-bottom: 40px; */
 }
 
 .calendar-body {
+  height: 100%;
   display: grid;
   grid-gap: 1px;
   grid-template-columns: repeat(7, 1fr);
 }
 
 .calendar-item {
-  height: 10vw;
-  outline: 0.1px solid black;
+  padding: 4px;
+  overflow: hidden;
+  outline: 0.1px solid rgb(202, 202, 202);
   text-align: center;
-  color: rgb(160, 160, 160);
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .calendar-item.current-month {
   color: black;
 }
 
-.calendar-item.today {
-  background-color: rgb(54, 54, 223);
+.calendar-weekday {
+  margin-bottom: 2px;
+}
+
+.calendar-day {
+  padding: 2px;
+}
+
+.calendar-item.today .calendar-day {
+  border-radius: 50%;
+  color: white;
+  background-color: rgb(231, 50, 50);
+}
+
+.calendar-text {
+  display: none;
 }

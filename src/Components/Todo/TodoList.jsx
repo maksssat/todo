@@ -26,19 +26,13 @@ export default function TodoList({ completed }) {
   return (
     <ul>
       {!state[selectedDate] ||
-      state[selectedDate].filter((item) =>
-        completed ? item.completed : !item.completed
-      ).length === 0
+      state[selectedDate].filter((item) => (completed ? item.completed : !item.completed)).length === 0
         ? "Нет дел"
         : state[selectedDate]
             .filter((item) => (completed ? item.completed : !item.completed))
             .map((item) => (
               <li className="todo-item" key={item.id}>
-                <input
-                  data-id={item.id}
-                  type="checkbox"
-                  onClick={handleComplete}
-                />
+                <input data-id={item.id} type="checkbox" onClick={handleComplete} />
                 <p>{item.text}</p>
                 <button data-id={item.id} onClick={handleRemove}>
                   ❌

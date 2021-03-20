@@ -13,8 +13,8 @@ function App() {
       <DateProvider>
         <SelectedDateProvider>
           <TodoProvider>
-          <DateSelector />
-          <Calendar />
+            <DateSelector />
+            <Calendar />
             <Todo />
           </TodoProvider>
         </SelectedDateProvider>

@@ -38,11 +38,6 @@ export default function Calendar() {
 
   return (
     <section className="calendar">
-      <div className="calendar-header">
-        {weekDaysArr.map((item) => (
-          <div key={item}>{item}</div>
-        ))}
-      </div>
       <div className="calendar-body" onClick={handleOnCalendarClick}>
         {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
           const currentDayStr = `${day} ${monthArr[month]} ${year}`;
@@ -53,15 +48,18 @@ export default function Calendar() {
               key={`${day} ${id}`}
               data-date={currentDayStr}
             >
-              <div>{day}</div>
+              {id < 7 ? <div className="calendar-weekday">{weekDaysArr[id]}</div> : null}
+
+              <span className="calendar-day">{day}</span>
+
               {state[currentDayStr] ? (
-                <div>
+                <div className="calendar-text">
                   {state[currentDayStr].map((item, id) => {
                     return id < 3 ? <p>{item.text}</p> : null;
                   })}
-                  {state[currentDayStr].length > 3
-                    ? `Еще ${7 - state[currentDayStr].length} элементов`
-                    : null}
+                  {state[currentDayStr].length > 3 ? (
+                    <p>Еще {7 - state[currentDayStr].length} элементов</p>
+                  ) : null}
                 </div>
               ) : null}
             </div>

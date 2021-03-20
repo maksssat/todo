@@ -13,13 +13,13 @@ export default function Todo() {
   });
 
   return (
-    <div>
+    <section className="todo">
       <h2>{selectedDate}</h2>
       <TodoInput />
       <h3>Невыполненные</h3>
       <TodoList completed={false} />
       <h3>Выполненные</h3>
       <TodoList completed={true} />
-    </div>
+    </section>
   );
 }

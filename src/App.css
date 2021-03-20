@@ -1,0 +1,12 @@
+.App {
+  display: grid;
+  grid-template-rows: 50px;
+  height: 100vh;
+  min-height: 0;
+}
+
+@media (min-width: 800px) {
+  .App {
+    grid-template-columns: 1fr 300px;
+  }
+}
