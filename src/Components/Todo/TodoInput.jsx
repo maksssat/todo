@@ -26,14 +26,17 @@ export default function TodoInput() {
   }
 
   return (
-    <>
+    <div className="todo-form">
       <input
+        className="todo-input"
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyPress={handleEnterPress}
       />
-      <button onClick={handleClick}>Add</button>
-    </>
+      <button className="todo-submit" onClick={handleClick}>
+        Add
+      </button>
+    </div>
   );
 }

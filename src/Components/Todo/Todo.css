@@ -1,7 +1,47 @@
-.todo { 
-    padding: 10px;
+.todo {
+  padding: 10px;
+}
+
+.todo-header {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.todo-input {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.todo-submit {
+  width: 100px;
+  height: 30px;
+  font-size: 17px;
+  border: none;
+  color: white;
+  background-color: rgb(231, 50, 50);
+}
+
+.todo h3 {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.todo-list {
+  padding: 0;
 }
 
 .todo-item {
   display: flex;
+  align-items: center;
+}
+
+.todo-item-text {
+  flex: 1;
+  margin-left: 10px;
 }

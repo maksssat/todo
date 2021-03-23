@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useTodo } from "../TodoContext/TodoContext";
 import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
 import { complete, remove } from "../TodoContext/TodoReducer";
-import "./Todo.css";
 
 export default function TodoList({ completed }) {
   const { selectedDate } = useSelectedDate();
@@ -24,7 +23,7 @@ export default function TodoList({ completed }) {
   }
 
   return (
-    <ul>
+    <ul className="todo-list">
       {!state[selectedDate] ||
       state[selectedDate].filter((item) => (completed ? item.completed : !item.completed)).length === 0
         ? "Нет дел"
@@ -33,7 +32,7 @@ export default function TodoList({ completed }) {
             .map((item) => (
               <li className="todo-item" key={item.id}>
                 <input data-id={item.id} type="checkbox" onClick={handleComplete} />
-                <p>{item.text}</p>
+                <p className="todo-item-text">{item.text}</p>
                 <button data-id={item.id} onClick={handleRemove}>
                   ❌
                 </button>

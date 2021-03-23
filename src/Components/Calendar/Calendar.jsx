@@ -37,35 +37,33 @@ export default function Calendar() {
   });
 
   return (
-    <section className="calendar">
-      <div className="calendar-body" onClick={handleOnCalendarClick}>
-        {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
-          const currentDayStr = `${day} ${monthArr[month]} ${year}`;
+    <section className="calendar" onClick={handleOnCalendarClick}>
+      {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
+        const currentDayStr = `${day} ${monthArr[month]} ${year}`;
 
-          return (
-            <div
-              className={`calendar-item${currentMonth && " current-month"}${today && " today"}`}
-              key={`${day} ${id}`}
-              data-date={currentDayStr}
-            >
-              {id < 7 ? <div className="calendar-weekday">{weekDaysArr[id]}</div> : null}
+        return (
+          <div
+            className={`calendar-item${currentMonth && " current-month"}${today && " today"}`}
+            key={`${day} ${id}`}
+            data-date={currentDayStr}
+          >
+            {id < 7 ? <div className="calendar-weekday">{weekDaysArr[id]}</div> : null}
 
-              <span className="calendar-day">{day}</span>
+            <span className="calendar-day">{day}</span>
 
-              {state[currentDayStr] ? (
-                <div className="calendar-text">
-                  {state[currentDayStr].map((item, id) => {
-                    return id < 3 ? <p>{item.text}</p> : null;
-                  })}
-                  {state[currentDayStr].length > 3 ? (
-                    <p>Еще {7 - state[currentDayStr].length} элементов</p>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-          );
-        })}
-      </div>
+            {state[currentDayStr] ? (
+              <div className="calendar-text">
+                {state[currentDayStr].map((item, id) => {
+                  return id < 3 ? <p>{item.text}</p> : null;
+                })}
+                {state[currentDayStr].length > 3 ? (
+                  <p>Еще {7 - state[currentDayStr].length} элементов</p>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+        );
+      })}
     </section>
   );
 }
