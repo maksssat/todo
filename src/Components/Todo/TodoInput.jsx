@@ -9,7 +9,7 @@ export default function TodoInput() {
   const { selectedDate } = useSelectedDate();
   const { dispatch } = useTodo();
 
-  console.log("TodoInput rendered");
+  // console.log("TodoInput rendered");
 
   function handleClick() {
     const id = Math.random() * 100;
@@ -35,7 +35,7 @@ export default function TodoInput() {
         onKeyPress={handleEnterPress}
       />
       <button className="todo-submit" onClick={handleClick}>
-        Add
+        Добавить
       </button>
     </div>
   );

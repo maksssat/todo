@@ -24,11 +24,11 @@ export default function DateSelector() {
     state: { month, year },
   } = useDate();
 
-  console.log("DateSelector render");
+  // console.log("DateSelector render");
 
-  useEffect(() => {
-    console.log("DateSelector rendered");
-  });
+  // useEffect(() => {
+  //   console.log("DateSelector rendered");
+  // });
 
   return (
     <section className="date-selector">

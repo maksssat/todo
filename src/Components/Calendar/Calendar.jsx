@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDate } from "../DateContext/DateContext";
 import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
 import { useTodo } from "../TodoContext/TodoContext";
+import classNames from "classnames";
 import "./Calendar.css";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
@@ -30,23 +31,23 @@ export default function Calendar() {
     setSelectedDate(e.target.closest(".calendar-item").dataset.date);
   }
 
-  console.log("Calendar render");
+  // con sole.log("Calendar render");
 
-  useEffect(() => {
-    console.log("Calendar rendered");
-  });
+  // useEffect(() => {
+  //   console.log("Calendar rendered");
+  // });
 
   return (
     <section className="calendar" onClick={handleOnCalendarClick}>
       {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
         const currentDayStr = `${day} ${monthArr[month]} ${year}`;
+        const calendarItemClass = classNames("calendar-item", {
+          "current-month": currentMonth,
+          today: today,
+        });
 
         return (
-          <div
-            className={`calendar-item${currentMonth && " current-month"}${today && " today"}`}
-            key={`${day} ${id}`}
-            data-date={currentDayStr}
-          >
+          <div className={calendarItemClass} key={`${day} ${id}`} data-date={currentDayStr}>
             {id < 7 ? <div className="calendar-weekday">{weekDaysArr[id]}</div> : null}
 
             <span className="calendar-day">{day}</span>

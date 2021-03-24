@@ -7,11 +7,11 @@ import "./Todo.css";
 export default function Todo() {
   const { selectedDate } = useSelectedDate();
 
-  console.log("Todo render");
+  // console.log("Todo render");
 
-  useEffect(() => {
-    console.log("Todo rendered");
-  });
+  // useEffect(() => {
+  //   console.log("Todo rendered");
+  // });
 
   return (
     <section className="todo">

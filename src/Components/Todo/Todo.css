@@ -15,6 +15,7 @@
   border: none;
   border-bottom: 1px solid gray;
   margin-bottom: 10px;
+  font-size: 17px;
 }
 
 .todo-submit {
@@ -38,10 +39,38 @@
 
 .todo-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  overflow: hidden;
+  margin-top: 15px;
 }
 
 .todo-item-text {
+  /* align-self: center; */
   flex: 1;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 10px;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.todo-item-text.completed {
+  text-decoration: line-through;
+}
+
+.todo-item-edit {
+  background: none;
+  border: none;
+  position: relative;
+  top: 4px;
+}
+
+.todo-item-remove {
+  background: none;
+  border: none;
+}
+
+.todo-item svg {
+  vertical-align: top;
 }
