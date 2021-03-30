@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useDate } from "../DateContext/DateContext";
-import { MONTH_DECREMENT, MONTH_INCREMENT } from "../DateContext/DateReducer";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { monthDecrement, monthIncrement, selectMonth, selectYear } from "../../Redux/date/dateSlice";
 import "./DateSelector.css";
 
 const monthArr = [
@@ -19,20 +19,14 @@ const monthArr = [
 ];
 
 export default function DateSelector() {
-  const {
-    dispatch,
-    state: { month, year },
-  } = useDate();
+  const month = useSelector(selectMonth);
+  const year = useSelector(selectYear);
 
-  // console.log("DateSelector render");
-
-  // useEffect(() => {
-  //   console.log("DateSelector rendered");
-  // });
+  const dispatch = useDispatch();
 
   return (
     <section className="date-selector">
-      <button className="date-selector-button" onClick={() => dispatch({ type: MONTH_DECREMENT })}>
+      <button className="date-selector-button" onClick={() => dispatch(monthDecrement())}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -47,7 +41,7 @@ export default function DateSelector() {
           />
         </svg>
       </button>
-      <button className="date-selector-button" onClick={() => dispatch({ type: MONTH_INCREMENT })}>
+      <button className="date-selector-button" onClick={() => dispatch(monthIncrement())}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"

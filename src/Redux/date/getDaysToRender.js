@@ -1,6 +1,4 @@
-import { today } from "./DateReducer";
-
-export function getDaysToRender(month, year) {
+export function getDaysToRender(month, year, today) {
   // объект Date из выбранной даты
   const selectedDateObj = new Date(year, month);
 

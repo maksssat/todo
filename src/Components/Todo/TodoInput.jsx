@@ -1,26 +1,22 @@
 import React, { useState } from "react";
-import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
-import { useTodo } from "../TodoContext/TodoContext";
-import { add } from "../TodoContext/TodoReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { selectedDate } from "../../Redux/date/dateSlice";
+import { add } from "../../Redux/todo/todoSlice";
 
 export default function TodoInput() {
   const [inputValue, setInputValue] = useState("");
 
-  const { selectedDate } = useSelectedDate();
-  const { dispatch } = useTodo();
-
-  // console.log("TodoInput rendered");
+  const date = useSelector(selectedDate);
+  const dispatch = useDispatch();
 
   function handleClick() {
-    const id = Math.random() * 100;
-    dispatch(add(selectedDate, id, inputValue));
+    dispatch(add(date, inputValue));
     setInputValue("");
   }
 
   function handleEnterPress(e) {
     if (e.code === "Enter") {
-      const id = Math.random() * 100;
-      dispatch(add(selectedDate, id, inputValue));
+      dispatch(add(date, inputValue));
       setInputValue("");
     }
   }

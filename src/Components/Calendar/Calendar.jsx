@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDate } from "../DateContext/DateContext";
-import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
-import { useTodo } from "../TodoContext/TodoContext";
+import React from "react";
 import classNames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { selectDaysArr, selectDate } from "../../Redux/date/dateSlice";
+import { selectTodo } from "../../Redux/todo/todoSlice";
 import "./Calendar.css";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
@@ -23,19 +23,13 @@ const monthArr = [
 ];
 
 export default function Calendar() {
-  const { daysToRender } = useDate();
-  const { setSelectedDate } = useSelectedDate();
-  const { state } = useTodo();
+  const state = useSelector(selectTodo);
+  const daysToRender = useSelector(selectDaysArr);
+  const dispatch = useDispatch();
 
   function handleOnCalendarClick(e) {
-    setSelectedDate(e.target.closest(".calendar-item").dataset.date);
+    dispatch(selectDate(e.target.closest(".calendar-item").dataset.date));
   }
-
-  // con sole.log("Calendar render");
-
-  // useEffect(() => {
-  //   console.log("Calendar rendered");
-  // });
 
   return (
     <section className="calendar" onClick={handleOnCalendarClick}>

@@ -1,42 +1,41 @@
-import React, { useEffect } from "react";
-import { useTodo } from "../TodoContext/TodoContext";
-import { useSelectedDate } from "../SelectedDateContext/SelectedDateContext";
-import { complete, remove } from "../TodoContext/TodoReducer";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectedDate } from "../../Redux/date/dateSlice";
+import { remove, complete, selectTodo, edit } from "../../Redux/todo/todoSlice";
 import classNames from "classnames";
 
 export default function TodoList({ completed }) {
-  const { selectedDate } = useSelectedDate();
+  const date = useSelector(selectedDate);
+  const state = useSelector(selectTodo);
 
-  const { state, dispatch } = useTodo();
-
-  // console.log("TodoList render");
-
-  // useEffect(() => {
-  //   console.log("TodoList rendered");
-  // });
+  const dispatch = useDispatch();
 
   function handleComplete(e) {
-    dispatch(complete(selectedDate, +e.target.dataset.id));
+    dispatch(complete({ date, id: e.target.dataset.id }));
   }
 
   function handleRemove(e) {
-    dispatch(remove(selectedDate, +e.target.closest("button").dataset.id));
+    dispatch(remove({ date, id: e.target.closest("button").dataset.id }));
+  }
+
+  function handleEdit(e) {
+    dispatch(edit());
   }
 
   const todoItemTextClass = classNames("todo-item-text", { completed: completed });
 
   return (
     <ul className="todo-list">
-      {!state[selectedDate] ||
-      state[selectedDate].filter((item) => (completed ? item.completed : !item.completed)).length === 0
+      {!state[date] ||
+      state[date].filter((item) => (completed ? item.completed : !item.completed)).length === 0
         ? "Нет дел"
-        : state[selectedDate]
+        : state[date]
             .filter((item) => (completed ? item.completed : !item.completed))
             .map((item) => (
               <li className="todo-item" key={item.id}>
                 <input data-id={item.id} type="checkbox" onClick={handleComplete} />
                 <p className={todoItemTextClass}>{item.text}</p>
-                <button className="todo-item-edit" data-id={item.id}>
+                <button className="todo-item-edit" data-id={item.id} onClick={handleEdit}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
