@@ -17,29 +17,17 @@ export function getDaysToRender(month, year, today) {
   function getDaysToPrepend() {
     const arr = [];
     let day = daysInPrevMonth;
+    const daysToUnshift = weekDayStart ? weekDayStart - 1 : 6;
 
-    if (weekDayStart === 0) {
-      for (let i = 1; i < 7; i++) {
-        arr.unshift({
-          day,
-          month: month ? month - 1 : 11,
-          year: month ? year : year - 1,
-          currentMonth: "",
-          today: "",
-        });
-        day--;
-      }
-    } else {
-      for (let i = 1; i < weekDayStart; i++) {
-        arr.unshift({
-          day,
-          month: month ? month - 1 : 11,
-          year: month ? year : year - 1,
-          currentMonth: "",
-          today: "",
-        });
-        day--;
-      }
+    for (let i = 1; i <= daysToUnshift; i++) {
+      arr.unshift({
+        day,
+        month: month ? month - 1 : 11,
+        year: month ? year : year - 1,
+        currentMonth: false,
+        today: false,
+      });
+      day--;
     }
 
     return arr;
@@ -55,7 +43,7 @@ export function getDaysToRender(month, year, today) {
     today:
       index + 1 === today.getDate() && month === today.getMonth() && year === today.getFullYear()
         ? true
-        : "",
+        : false,
     currentMonth: true,
   }));
 
@@ -70,8 +58,8 @@ export function getDaysToRender(month, year, today) {
           day: i,
           month: month === 11 ? 0 : month + 1,
           year: month === 11 ? year + 1 : year,
-          currentMonth: "",
-          today: "",
+          currentMonth: false,
+          today: false,
         });
       }
     }
