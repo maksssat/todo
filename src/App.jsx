@@ -6,11 +6,13 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <DateSelector />
-      <Calendar />
-      <Todo />
-    </div>
+    <React.StrictMode>
+      <div className="App">
+        <DateSelector />
+        <Calendar />
+        <Todo />
+      </div>
+    </React.StrictMode>
   );
 }
 
