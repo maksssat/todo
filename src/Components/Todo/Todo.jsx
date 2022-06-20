@@ -12,10 +12,12 @@ export default function Todo() {
     <section className="todo">
       <h2 className="todo-header">{date}</h2>
       <TodoInput />
-      <h3>Невыполненные</h3>
-      <TodoList completed={false} />
-      <h3>Выполненные</h3>
-      <TodoList completed={true} />
+      <div className="todo-content">
+        <h3>Невыполненные</h3>
+        <TodoList completed={false} />
+        <h3>Выполненные</h3>
+        <TodoList completed={true} />
+      </div>
     </section>
   );
 }

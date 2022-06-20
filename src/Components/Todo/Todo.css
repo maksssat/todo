@@ -1,5 +1,19 @@
 .todo {
   padding: 10px;
+  overflow: hidden;
+
+  }
+
+@media (min-width: 1100px)  {
+  .todo {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+.todo-content {
+  overflow: auto;
+  flex: 1;
 }
 
 .todo-header {

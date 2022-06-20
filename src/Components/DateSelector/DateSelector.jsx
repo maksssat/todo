@@ -21,7 +21,6 @@ const monthArr = [
 export default function DateSelector() {
   const month = useSelector(selectMonth);
   const year = useSelector(selectYear);
-
   const dispatch = useDispatch();
 
   return (

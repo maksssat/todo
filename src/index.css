@@ -1,6 +1,15 @@
 body {
+  height: 100vh;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#root {
+  height: 100%;
+}
+
+/* * {
+  outline:red solid 1px;
+} */
