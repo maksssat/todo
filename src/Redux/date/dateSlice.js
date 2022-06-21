@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { getDaysToRender } from "./getDaysToRender";
 
 export const today = new Date();
 
-const month = [
+export const monthArr = [
   "января",
   "февраля",
   "марта",
@@ -21,10 +21,9 @@ const month = [
 const dateSlice = createSlice({
   name: "date",
   initialState: {
-    today: today.toLocaleDateString(),
     month: today.getMonth(),
     year: today.getFullYear(),
-    selectedDate: `${today.getDate()} ${month[today.getMonth()]} ${today.getFullYear()}`,
+    selectedDate: `${today.getDate()} ${monthArr[today.getMonth()]} ${today.getFullYear()}`,
   },
   reducers: {
     monthDecrement(state) {
@@ -54,4 +53,7 @@ export const { monthDecrement, monthIncrement, selectDate } = dateSlice.actions;
 export const selectMonth = (state) => state.date.month;
 export const selectYear = (state) => state.date.year;
 export const selectedDate = (state) => state.date.selectedDate;
-export const selectDaysArr = ({ date }) => getDaysToRender(date.month, date.year, today);
+export const selectDaysArr = createSelector(
+  [selectMonth, selectYear, (state, today) => today],
+  (month, year, today) => getDaysToRender(month, year, today)
+);
