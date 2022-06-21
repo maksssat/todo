@@ -19,6 +19,10 @@ export default function Calendar() {
 
   function handleOnCalendarClick(e) {
     dispatch(selectDate(e.target.closest(".calendar-item").dataset.date));
+    const currentSelectedDay = document.querySelector(".selected");
+    if (currentSelectedDay !== null) currentSelectedDay.classList.remove("selected");
+    const selectedDay = e.target.closest(".calendar-item");
+    selectedDay.classList.add("selected");
     if (isMobile) navigate("todo");
   }
 
