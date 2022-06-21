@@ -2,6 +2,7 @@
   display: grid;
   grid-gap: 1px;
   grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
 }
 
 .calendar-item {
@@ -32,6 +33,18 @@
   background-color: rgb(231, 50, 50);
 }
 
-.calendar-text {
-  display: none;
+.calendar-text p {
+  margin: 2px;
+  padding: 3px 1px;
+  color: white;
+  font-size: 12px;
+  background: rgb(231, 50, 50);
+  border-radius:8px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-text p:first-child {
+  margin-top: 15px;
 }

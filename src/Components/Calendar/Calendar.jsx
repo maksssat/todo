@@ -1,28 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { selectDaysArr, selectDate, today } from "../../Redux/date/dateSlice";
+import { selectDaysArr, selectDate, today, monthArr } from "../../Redux/date/dateSlice";
 import { selectTodos } from "../../Redux/todo/todoSlice";
 import "./Calendar.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import useDeviceDetect from "../Hooks/useDeviceDetect";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
-
-const monthArr = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноября",
-  "декабря",
-];
 
 export default function Calendar() {
   const todos = useSelector(selectTodos);
@@ -42,7 +27,9 @@ export default function Calendar() {
       <section className="calendar" onClick={handleOnCalendarClick}>
         {daysToRender.map(({ day, month, year, today, currentMonth }, id) => {
           const currentDayStr = `${day} ${monthArr[month]} ${year}`;
-          const todosArr = todos[currentDayStr] ? Object.values(todos[currentDayStr]) : null;
+          const uncompletedTodosArr = todos[currentDayStr]
+            ? Object.values(todos[currentDayStr]).filter((todo) => todo.completed === false)
+            : null;
           const calendarItemClass = classNames("calendar-item", {
             "current-month": currentMonth,
             today: today,
@@ -54,13 +41,17 @@ export default function Calendar() {
 
               <span className="calendar-day">{day}</span>
 
-              {todosArr !== null ? (
+              {uncompletedTodosArr !== null ? (
                 <div className="calendar-text">
-                  {todosArr.map((item, id) => {
-                    if (id >= 3) return null;
-                    return <p key={item.id}>{item.text}</p>;
-                  })}
-                  {todosArr.length > 3 ? <p>Еще {todosArr.length - 3} элемента (-ов)</p> : null}
+                  {uncompletedTodosArr
+                    .filter((todo) => todo.completed === false)
+                    .map((todo, id) => {
+                      if (id >= 3) return null;
+                      return <p key={todo.id}>{todo.text}</p>;
+                    })}
+                  {uncompletedTodosArr.length > 3 ? (
+                    <p>Еще {uncompletedTodosArr.length - 3} элемента (-ов)</p>
+                  ) : null}
                 </div>
               ) : null}
             </div>
