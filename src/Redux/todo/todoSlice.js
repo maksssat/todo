@@ -1,15 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
+import { monthArr, today } from "../../Redux/date/dateSlice";
 
 const todoSlice = createSlice({
   name: "todo",
-  initialState: {},
+  initialState: {
+    [`${today.getDate()} ${monthArr[today.getMonth()]} ${today.getFullYear()}`]: {
+      "MYDRBqZCJL7yg1i4FPo-2": {
+        id: "MYDRBqZCJL7yg1i4FPo-2",
+        completed: false,
+        date: "17 июня 2022",
+        text: "Купить молоко",
+      },
+      "9k8e49l7_xh_it1rBLooj": {
+        id: "9k8e49l7_xh_it1rBLooj",
+        completed: false,
+        date: "17 июня 2022",
+        text: "Помыть машину",
+      },
+      DGPpwRaV_Ebk4kS_BelXF: {
+        id: "DGPpwRaV_Ebk4kS_BelXF",
+        completed: true,
+        date: "17 июня 2022",
+        text: "Изучить API Redux",
+      },
+      "7cUOax4vpw9QH77VFDYDO": {
+        id: "7cUOax4vpw9QH77VFDYDO",
+        completed: true,
+        date: "17 июня 2022",
+        text: "Изучить API React Hooks",
+      },
+      MIMUFMCT1bnATOCiZhDi3: {
+        id: "MIMUFMCT1bnATOCiZhDi3",
+        completed: true,
+        date: "17 июня 2022",
+        text: "Изучить API React Router",
+      },
+    },
+  },
   reducers: {
     add: {
       reducer(state, action) {
-        const date = action.payload.date;
-        if (state[date] !== undefined) state[date].push(action.payload);
-        else state[date] = [action.payload];
+        const payload = action.payload;
+        const date = payload.date;
+        const id = payload.id;
+        if (state[date] === undefined) {
+          state[date] = {};
+          state[date][id] = payload;
+        } else state[date][id] = payload;
       },
 
       prepare(date, text) {
@@ -25,19 +63,25 @@ const todoSlice = createSlice({
     },
 
     remove(state, action) {
-      const date = action.payload.date;
-      const id = action.payload.id;
-      const index = state[date].findIndex((item) => item.id === id);
-      state[date].splice(index, 1);
+      const payload = action.payload;
+      const date = payload.date;
+      const id = payload.id;
+      delete state[date][id];
     },
 
     complete(state, action) {
-      const date = action.payload.date;
-      const id = action.payload.id;
-      const index = state[date].findIndex((item) => item.id === id);
-      state[date][index].completed = !state[date][index].completed;
+      const payload = action.payload;
+      const date = payload.date;
+      const id = payload.id;
+      state[date][id].completed = !state[date][id].completed;
     },
-    edit(state, action) {},
+
+    edit(state, action) {
+      const payload = action.payload;
+      const date = payload.date;
+      const id = payload.id;
+      state[date][id] = payload;
+    },
   },
 });
 
@@ -45,4 +89,5 @@ export default todoSlice.reducer;
 
 export const { add, remove, complete, edit } = todoSlice.actions;
 
-export const selectTodo = (state) => state.todo;
+export const selectTodos = (state) => state.todo;
+export const selectTodoById = (state, date, id) => state.todo[date][id];

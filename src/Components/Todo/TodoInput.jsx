@@ -9,9 +9,15 @@ export default function TodoInput() {
   const date = useSelector(selectedDate);
   const dispatch = useDispatch();
 
+  function handleInputChange(e) {
+    setInputValue(e.target.value);
+  }
+
   function handleClick() {
-    dispatch(add(date, inputValue));
-    setInputValue("");
+    if (inputValue !== "") {
+      dispatch(add(date, inputValue));
+      setInputValue("");
+    }
   }
 
   function handleEnterPress(e) {
@@ -27,7 +33,7 @@ export default function TodoInput() {
         className="todo-input"
         type="text"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={handleInputChange}
         onKeyPress={handleEnterPress}
       />
       <button className="todo-submit" onClick={handleClick}>
