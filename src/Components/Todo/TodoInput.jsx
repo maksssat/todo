@@ -36,7 +36,7 @@ export default function TodoInput() {
         onChange={handleInputChange}
         onKeyPress={handleEnterPress}
       />
-      <button className="todo-submit" onClick={handleClick}>
+      <button className="todo-button" onClick={handleClick}>
         Добавить
       </button>
     </div>

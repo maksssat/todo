@@ -32,9 +32,15 @@
   font-size: 17px;
 }
 
-.todo-submit {
-  width: 100px;
-  height: 30px;
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-button {
+  /* width: 100px;
+  height: 30px; */
+  padding: 7px 19px;
   font-size: 17px;
   border: none;
   color: white;

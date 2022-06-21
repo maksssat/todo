@@ -18,7 +18,7 @@ export default function EditTodo() {
     setInputValue(e.target.value);
   }
 
-  function handleClick() {
+  function handleSaveClick() {
     if (inputValue !== "") {
       dispatch(edit({ date, text: inputValue, id: todoId, completed: todo.completed }));
       if (isMobile) navigate("/todo");
@@ -28,8 +28,13 @@ export default function EditTodo() {
 
   function handleEnterPress(e) {
     if (e.code === "Enter") {
-      handleClick();
+      handleSaveClick();
     }
+  }
+
+  function handleCancelClick() {
+    if (isMobile) navigate("/todo");
+    else navigate("/");
   }
 
   return (
@@ -43,9 +48,14 @@ export default function EditTodo() {
           onChange={handleInputChange}
           onKeyPress={handleEnterPress}
         />
-        <button className="todo-submit" onClick={handleClick}>
-          Сохранить
-        </button>
+        <div className="button-wrapper">
+          <button className="todo-button" onClick={handleSaveClick}>
+            Сохранить
+          </button>
+          <button className="todo-button" onClick={handleCancelClick}>
+            Отменить
+          </button>
+        </div>
       </div>
     </section>
   );
