@@ -13,8 +13,9 @@ export default function TodoInput() {
     setInputValue(e.target.value);
   }
 
-  function handleClick() {
+  function handleClick(e) {
     if (inputValue !== "") {
+      e.preventDefault();
       dispatch(add(date, inputValue));
       setInputValue("");
     }
@@ -22,23 +23,23 @@ export default function TodoInput() {
 
   function handleEnterPress(e) {
     if (e.code === "Enter") {
-      dispatch(add(date, inputValue));
-      setInputValue("");
+      handleClick();
     }
   }
 
   return (
-    <div className="todo-form">
+    <form className="todo-form">
       <input
         className="todo-input"
         type="text"
         value={inputValue}
         onChange={handleInputChange}
         onKeyPress={handleEnterPress}
+        required
       />
       <button className="todo-button" onClick={handleClick}>
         Добавить
       </button>
-    </div>
+    </form>
   );
 }

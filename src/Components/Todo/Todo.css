@@ -35,11 +35,13 @@
 .button-wrapper {
   display: flex;
   justify-content: space-between;
+  flex-flow: row wrap;
 }
 
 .todo-button {
   /* width: 100px;
   height: 30px; */
+  margin: 10px 0;
   padding: 7px 19px;
   font-size: 17px;
   border: none;
