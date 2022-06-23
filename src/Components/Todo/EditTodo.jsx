@@ -46,6 +46,7 @@ export default function EditTodo() {
           className="todo-input"
           type="text"
           value={inputValue}
+          placeholder={"Введите текст"}
           onChange={handleInputChange}
           onKeyPress={handleEnterPress}
           required

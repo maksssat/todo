@@ -1,17 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectedDate } from "../../Redux/date/dateSlice";
 import { remove, complete, selectTodos } from "../../Redux/todo/todoSlice";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import useDeviceDetect from "../Hooks/useDeviceDetect";
 
-export default function TodoList({ completed }) {
+export default function TodoList({ completed, date, isMobile }) {
   const dispatch = useDispatch();
-  const date = useSelector(selectedDate);
   const todos = useSelector(selectTodos);
 
-  const isMobile = useDeviceDetect();
   const linkPrefix = isMobile ? "todo" : "calendar";
 
   const todosArr = todos[date] === undefined ? [] : Object.values(todos[date]);

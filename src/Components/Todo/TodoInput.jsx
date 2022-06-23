@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectedDate } from "../../Redux/date/dateSlice";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { add } from "../../Redux/todo/todoSlice";
 
-export default function TodoInput() {
+export default function TodoInput({ date, isMobile }) {
   const [inputValue, setInputValue] = useState("");
 
-  const date = useSelector(selectedDate);
   const dispatch = useDispatch();
 
   function handleInputChange(e) {
@@ -33,6 +32,7 @@ export default function TodoInput() {
         className="todo-input"
         type="text"
         value={inputValue}
+        placeholder={"Введите текст"}
         onChange={handleInputChange}
         onKeyPress={handleEnterPress}
         required
@@ -40,6 +40,11 @@ export default function TodoInput() {
       <button className="todo-button" onClick={handleClick}>
         Добавить
       </button>
+      {isMobile && (
+        <Link to="/" className="todo-button">
+          Отмена
+        </Link>
+      )}
     </form>
   );
 }
