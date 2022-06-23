@@ -40,7 +40,11 @@ export default function Calendar() {
           });
 
           return (
-            <div className={calendarItemClass} key={`${day}${month}${year}`} data-date={currentDayStr}>
+            <div
+              className={calendarItemClass}
+              key={`${day}${month}${year}`}
+              data-date={`${day} ${month} ${year}`}
+            >
               {id < 7 ? <div className="calendar-weekday">{weekDaysArr[id]}</div> : null}
 
               <span className="calendar-day">{day}</span>

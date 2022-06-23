@@ -16,7 +16,7 @@
 }
 
 .calendar-item.selected {
-background-color: rgb(184, 184, 184);
+background-color: rgb(233 233 233);
 }
 
 .calendar-item.current-month {
