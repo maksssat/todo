@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { selectDaysArr, selectDate, today, monthArr } from "../../Redux/date/dateSlice";
+import {
+  selectDaysArr,
+  selectDate,
+  today,
+  monthArr,
+  monthDecrement,
+  monthIncrement,
+} from "../../Redux/date/dateSlice";
 import { selectTodos } from "../../Redux/todo/todoSlice";
 import "./Calendar.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import useDeviceDetect from "../Hooks/useDeviceDetect";
 
 const weekDaysArr = ["пн", "вт", "ср", "чт", "пт", "сб", "вс"];
+
+let touchstartX = 0;
+let touchendX = 0;
 
 export default function Calendar() {
   const todos = useSelector(selectTodos);
@@ -16,6 +26,26 @@ export default function Calendar() {
   const navigate = useNavigate();
 
   const isMobile = useDeviceDetect();
+
+  function handleTouchStart(e) {
+    touchstartX = e.changedTouches[0].screenX;
+  }
+
+  function handleTouchEnd(e) {
+    touchendX = e.changedTouches[0].screenX;
+    if (touchendX < touchstartX) dispatch(monthIncrement());
+    if (touchendX > touchstartX) dispatch(monthDecrement());
+  }
+
+  useEffect(() => {
+    const calendar = document.querySelector(".calendar");
+    calendar.addEventListener("touchstart", handleTouchStart);
+    calendar.addEventListener("touchend", handleTouchEnd);
+    return () => {
+      calendar.removeEventListener("touchstart", handleTouchStart);
+      calendar.removeEventListener("touchend", handleTouchEnd);
+    };
+  });
 
   function handleOnCalendarClick(e) {
     dispatch(selectDate(e.target.closest(".calendar-item").dataset.date));
