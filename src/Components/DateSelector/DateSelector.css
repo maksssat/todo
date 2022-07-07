@@ -10,9 +10,15 @@
 }
 
 .date-selector-button {
+  width: 5ch;
+  height: 5ch;
+  padding: 0;
   border-radius: 50%;
   background-color: transparent;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .date-selector-button:hover {

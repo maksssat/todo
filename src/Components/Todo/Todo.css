@@ -39,8 +39,6 @@
 }
 
 .todo-button {
-  /* width: 100px;
-  height: 30px; */
   margin: 10px 0;
   padding: 7px 19px;
   font-size: 17px;
@@ -61,7 +59,7 @@
 
 .todo-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   overflow: hidden;
   margin-top: 15px;
 }
@@ -84,8 +82,6 @@
 .todo-item-edit {
   background: none;
   border: none;
-  position: relative;
-  top: 4px;
 }
 
 .todo-item-remove {

@@ -28,6 +28,9 @@ background-color: rgb(233 233 233);
 }
 
 .calendar-day {
+  display: block;
+  width: 2ch;
+  height: 2ch;
   padding: 2px;
 }
 
