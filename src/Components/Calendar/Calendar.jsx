@@ -48,6 +48,7 @@ export default function Calendar() {
   });
 
   function handleOnCalendarClick(e) {
+    if (e.target.closest(".calendar-item") === null) return;
     dispatch(selectDate(e.target.closest(".calendar-item").dataset.date));
     const currentSelectedDay = document.querySelector(".selected");
     if (currentSelectedDay !== null) currentSelectedDay.classList.remove("selected");
