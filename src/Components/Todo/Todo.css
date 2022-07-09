@@ -45,6 +45,7 @@
   border: none;
   color: white;
   background-color: rgb(231, 50, 50);
+  cursor: pointer;
 }
 
 .todo h3 {
@@ -64,8 +65,11 @@
   margin-top: 15px;
 }
 
+.todo-item-checkbox {
+  cursor: pointer;
+}
+
 .todo-item-text {
-  /* align-self: center; */
   flex: 1;
   margin-top: 0;
   margin-bottom: 0;
@@ -82,11 +86,13 @@
 .todo-item-edit {
   background: none;
   border: none;
+  color: black;
 }
 
 .todo-item-remove {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .todo-item svg {

@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .date-selector-button:hover {
@@ -26,6 +27,7 @@
 }
 
 .date-display {
+  font-weight: 400;
   font-size: 20px;
   text-transform: uppercase;
 }

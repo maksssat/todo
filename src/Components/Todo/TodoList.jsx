@@ -26,7 +26,13 @@ export default function TodoList({ completed, date, isMobile }) {
     .filter((item) => (completed ? item.completed : !item.completed))
     .map((item) => (
       <li className="todo-item" key={item.id}>
-        <input data-id={item.id} type="checkbox" onClick={handleComplete} />
+        <input
+          className="todo-item-checkbox"
+          data-id={item.id}
+          type="checkbox"
+          onClick={handleComplete}
+          defaultChecked={completed ? true : false}
+        />
         <p className={todoItemTextClass}>{item.text}</p>
         <Link to={`/${linkPrefix}/edit/${date}/${item.id}`} className="todo-item-edit" data-id={item.id}>
           <svg
