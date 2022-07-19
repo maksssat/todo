@@ -2,4 +2,4 @@
 
 Использованы React, Redux, React Router
 
-Приложение [опубликовано на gh-pages](#https://maksssat.github.io/todo/)
+Приложение [опубликовано на gh-pages]#https://maksssat.github.io/todo/
